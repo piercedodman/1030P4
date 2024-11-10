@@ -37,27 +37,18 @@ int main(int argc, char* argv[]) {
             throw file_open_error("Failed to open input file: " + string(argv[1]));
         }
 
-
-        // Read dates and perform experiments for different list sizes
-        const vector<int> TEST_SIZES = {500, 1250, 2000};
+        LL<Date> dateList;
+        Date tempDate;
+        int count = 0;
+        while(inFile >> tempDate) {
+            dateList.push_back(tempDate);
+            count++;
+        }
         
-        for (int targetSize : TEST_SIZES) {
             cout << "\n----------------------------------------";
-            cout << "\nRunning tests for size: " << targetSize  << "\n";
-            cout << "----------------------------------------" << endl;
-            
-            // Read specified number of dates
-            LL<Date> dateList;
-            Date tempDate;
-            int count = 0;
-            while(count < targetSize && (inFile >> tempDate)) {
-                dateList.push_back(tempDate);
-                count++;
-            }
-            
-            if (count != targetSize){
-                cout << "Warning: Could only read " << count << " dates" << endl;
-            }
+            cout << "\nRunning tests for size: " << count;
+            cout << "\n----------------------------------------" << endl;
+        
 
             // Store original list for resetting between sorts
             LL<Date> originalList = dateList;
@@ -113,43 +104,39 @@ int main(int argc, char* argv[]) {
             if (!dateList.empty()) {
                 Date searchTarget = dateList.at(dateList.size() / 2);  // Middle element
 
-                ProcessTimer linearTimer;
-                cout << "\nLinear Search";
-                cout << "\n-------------";
-                cout << "\nSearching for: " << searchTarget << "\n";
-                linearTimer.setTimeStart(clock());
-                try {
-                    unsigned pos = dateList.linearSearch(searchTarget);
-                    cout << "\nFound at position: " << pos << endl;
-                }
-                catch (const no_such_object& e) {
-                    cout << "\nSearch failed: " << e.what() << endl;
-                }
-                linearTimer.setTimeEnd(clock());
-                cout << "\nTime: " << fixed << setprecision(6)
-                << linearTimer.getTimeElapsed() << " seconds\n";
-
-                ProcessTimer binaryTimer;
-                cout << "\nBinary Search";
-                cout << "\n-------------";
-                cout << "\nSearching for: " << searchTarget << "\n";
-                binaryTimer.setTimeStart(clock());
-                try {
-                    unsigned pos = dateList.binarySearch(searchTarget);
-                    cout << "\nFound at position: " << pos << endl;
-                }
-                catch (const no_such_object& e) {
-                    cout << "\nSearch failed: " << e.what() << endl;
-                }
-                binaryTimer.setTimeEnd(clock());
-                cout << "\nTime: " << fixed << setprecision(6)
-                << binaryTimer.getTimeElapsed() << " seconds\n\n";
+            ProcessTimer linearTimer;
+            cout << "\nLinear Search";
+            cout << "\n-------------";
+            cout << "\nSearching for: " << searchTarget << "\n";
+            linearTimer.setTimeStart(clock());
+            try {
+                unsigned pos = dateList.linearSearch(searchTarget);
+                cout << "\nFound at position: " << pos << endl;
             }
-            
-            inFile.clear();
-            inFile.seekg(0, ios::beg);
+            catch (const no_such_object& e) {
+                cout << "\nSearch failed: " << e.what() << endl;
+            }
+            linearTimer.setTimeEnd(clock());
+            cout << "\nTime: " << fixed << setprecision(6)
+            << linearTimer.getTimeElapsed() << " seconds\n";
 
-        }
+            ProcessTimer binaryTimer;
+            cout << "\nBinary Search";
+            cout << "\n-------------";
+            cout << "\nSearching for: " << searchTarget << "\n";
+            binaryTimer.setTimeStart(clock());
+            try {
+                unsigned pos = dateList.binarySearch(searchTarget);
+                cout << "\nFound at position: " << pos << endl;
+            }
+            catch (const no_such_object& e) {
+                cout << "\nSearch failed: " << e.what() << endl;
+            }
+            binaryTimer.setTimeEnd(clock());
+            cout << "\nTime: " << fixed << setprecision(6)
+            << binaryTimer.getTimeElapsed() << " seconds\n\n";
+            }
+
 
         inFile.close();
     }

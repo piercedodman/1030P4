@@ -37,10 +37,25 @@ int main(int argc, char* argv[]) {
             throw file_open_error("Failed to open input file: " + string(argv[1]));
         }
 
+        string line;
+        int totalDates = 0;
+        while(getline(inFile, line)) {
+            if(!line.empty()) totalDates++;
+        }
+        cout << "Dates Read: " << totalDates << endl;
+
+        inFile.clear();
+        inFile.seekg(0,ios::beg);
+
         LL<Date> dateList;
         Date tempDate;
         int count = 0;
-        while(inFile >> tempDate) {
+        
+            cout << "\n----------------------------------------";
+            cout << "\nRunning tests for size: " << totalDates;
+            cout << "\n----------------------------------------" << endl;
+        
+        while(count < totalDates && (inFile >> tempDate)) {
             dateList.push_back(tempDate);
             count++;
         }
@@ -48,11 +63,6 @@ int main(int argc, char* argv[]) {
         if (count == 0) {
             throw runtime_error("No dates were read from the input file");
         }
-        
-            cout << "\n----------------------------------------";
-            cout << "\nRunning tests for size: " << count;
-            cout << "\n----------------------------------------" << endl;
-        
 
             // Store original list for resetting between sorts
             LL<Date> originalList = dateList;
@@ -60,7 +70,7 @@ int main(int argc, char* argv[]) {
             // Test bubbleSortI
             ProcessTimer bubbleITimer;
             cout << "\nBubble Sort (Iterator Version)";
-            cout << "\n-----------------------------\n";
+            cout << "\n------------------------------\n";
             bubbleITimer.setTimeStart(clock());
             dateList.bubbleSortI();
             bubbleITimer.setTimeEnd(clock());
@@ -73,7 +83,7 @@ int main(int argc, char* argv[]) {
             // Test bubbleSort
             ProcessTimer bubbleTimer;
             cout << "\nBubble Sort";
-            cout << "\n----------\n";
+            cout << "\n-----------\n";
             bubbleTimer.setTimeStart(clock());
             dateList.bubbleSort();
             bubbleTimer.setTimeEnd(clock());

@@ -44,6 +44,10 @@ int main(int argc, char* argv[]) {
             dateList.push_back(tempDate);
             count++;
         }
+
+        if (count == 0) {
+            throw runtime_error("No dates were read from the input file");
+        }
         
             cout << "\n----------------------------------------";
             cout << "\nRunning tests for size: " << count;

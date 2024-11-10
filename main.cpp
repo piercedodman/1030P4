@@ -156,15 +156,15 @@ int main(int argc, char* argv[]) {
     }
     catch (const missing_arguments& e) {
         cerr << e.what() << endl;
-        return 1;
+        // return 1;
     }
     catch (const file_open_error& e) {
         cerr << e.what() << endl;
-        return 1;
+        // return 1;
     }
     catch (const exception& e) {
         cerr << "Error: " << e.what() << endl;
-        return 1;
+        // return 1;
     }
 
     return 0;

@@ -126,7 +126,14 @@ void Date::setDate(int year, int month, int day)
     if (month < 1 || month > 12)
         throw bad_date_component("Invalid month value");
 
+    bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+
     int maxDays = daysPerMonth[month - 1];
+
+    if (month == 2 && isLeapYear) {
+        maxDays = 29;
+    }
+
     if (day < 1 || day > maxDays)
         throw bad_date_component("Invalid day value");
 

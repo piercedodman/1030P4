@@ -42,7 +42,6 @@ int main(int argc, char* argv[]) {
         while(getline(inFile, line)) {
             if(!line.empty()) totalDates++;
         }
-        cout << "Dates Read: " << totalDates << endl;
 
         inFile.clear();
         inFile.seekg(0,ios::beg);

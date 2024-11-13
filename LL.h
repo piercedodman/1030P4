@@ -39,7 +39,12 @@
  //#define DEBUG_LL_POP_BACK
  //#define DEBUG_COPY_LIST
  //#define DEBUG_LL_INSERT
- 
+ //#define DEBUG_DESTRUCTOR
+ //#define DEBUG_I_BUBBLE
+ //#define DEBUG_BUBBLE
+ //#define DEBUG_SELECTION
+ //#define DEBUG_LINEAR
+
  using std::vector;
  using std::string;
  using std::endl;
@@ -445,7 +450,9 @@
  LL<T>::~LL()
  {
      //destructor
+    #ifdef DEBUG_DESTRUCTOR
      std::cout << "LL<T>::~LL() Entered destructor for class LL<T>\n";
+    #endif 
  
  
     clear();
@@ -453,8 +460,9 @@
     delete trailer;
  
  
- 
-     std::cout << "LL<T>::~LL() Exiting destructor for class LL<T>\n";
+    #ifdef DEBUG_DESTRUCTOR
+     std::cout << "LL<T>::~LL() Exiting destructor for class LL<T>\n"
+    #endif 
  
  } //END LL<T>::~LL()
  
@@ -758,7 +766,9 @@ if (ndx > count) {
  template <typename T>
  void LL<T>::bubbleSortI()
  {
+    #ifdef DEBUG_I_BUBBLE
      cout << "Entered member function bubbleSortI()" << endl;
+    #endif
  
     if (count <= 1) return;
     
@@ -781,7 +791,11 @@ if (ndx > count) {
         }
     } while (swapped);
  
-     cout << "Exiting member function bubbleSortI() \nresults: swapCount = "
+    #ifdef DEBUG_I_BUBBLE
+     cout << "Exiting member function bubbleSortI()";
+    #endif
+     
+     cout << "\nResults: swapCount = "
         << swapCount << endl;
  
  } //END member function LL<T>::bubbleSortI()
@@ -795,8 +809,10 @@ if (ndx > count) {
  template <typename T>
  void LL<T>::bubbleSort()
  {
+    #ifdef DEBUG_BUBBLE
      cout << "Entered member function bubbleSort()" << endl;
- 
+    #endif
+
     if (count <= 1) return;
     
     unsigned swapCount = 0;
@@ -812,9 +828,11 @@ if (ndx > count) {
             }
         }
     }
-         
-     cout << "Exiting member function bubbleSort() \nresults: swapCount = "
-         << swapCount << endl;
+     #ifdef DEBUG_BUBBLE    
+     cout << "Exiting member function bubbleSort()";
+     #endif
+
+     cout << "\nResults: swapCount = " << swapCount << endl;
  
  } //END member function LL<T>::bubbleSort()
  
@@ -827,7 +845,9 @@ if (ndx > count) {
  template <typename T>
  void LL<T>::selectionSort()
  {
+    #ifdef DEBUG_SELECTION
     cout << "Entered function selectionSort() " << endl;
+    #endif 
  
          if (count <= 1) return;
     
@@ -850,9 +870,11 @@ if (ndx > count) {
             swapCount++;
         }
     }
- 
-     cout << "Exiting function selectionSort() \nresults: swapCount = "
-         << swapCount << endl;
+    #ifdef DEBUG_SELECTION
+    cout << "Exiting function selectionSort()";
+    #endif
+
+    cout << "\nResults: swapCount = " << swapCount << endl;
  
  } // END void LL<T>::selectionSort()
  
@@ -865,8 +887,10 @@ if (ndx > count) {
  template <typename T>
  void LL<T>::insertionSort()
  {
+    #ifdef DEBUG_INSERTION
      cout << "Entered function insertionSort() " << endl;
- 
+    #endif
+
     if (count <= 1) return;
     
     unsigned swapCount = 0;
@@ -883,8 +907,11 @@ if (ndx > count) {
         at(j + 1) = key;
     }
  
-     cout << "Exiting function insertionSort() \nresults: swapCount = "
-         << swapCount << endl;
+    #ifdef DEBUG_INSERTION
+     cout << "Exiting function insertionSort()"; 
+    #endif
+
+    cout <<"\nResults: swapCount = "  << swapCount << endl;
  
  } // END void LL<T>::insertionSort()
  
@@ -897,7 +924,9 @@ if (ndx > count) {
  template <typename T>
  unsigned LL<T>::linearSearch(T lookFor) const
  {
+    #ifdef DEBUG_LINEAR
      cout << "Entered function linearSearch(" << lookFor << ")" << endl;
+    #endif
  
      // USE THESE VARIABLES OR REPLACE WITH VARIABLES OF YOUR CHOICE
  
@@ -918,7 +947,10 @@ if (ndx > count) {
         throw no_such_object("Value not found in list");
     }
  
+    #ifdef DEBUG_LINEAR
      cout << "Exiting function linearSearch()" << endl;
+    #endif
+
  
      return index;
  
@@ -934,7 +966,9 @@ if (ndx > count) {
  template <typename T>
  unsigned LL<T>::binarySearch(T lookFor) const
  {
+    #ifdef BINARY_DEBUG
      cout << "Entered function binarySearch(" << lookFor << ")" << endl;
+    #endif
  
     if (count == 0) {
         throw no_such_object("List is empty");
@@ -966,7 +1000,10 @@ if (ndx > count) {
         throw no_such_object("Value not found in list");
     }
  
-     cout << "Exiting function binarySearch()" << endl;
+    #ifdef BINARY_DEBUG
+    cout << "Exiting function binarySearch()" << endl;
+    #endif
+    
      return position;
  
  } // END unsigned LL<T>::binarySearch(T lookFor)

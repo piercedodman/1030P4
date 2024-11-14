@@ -355,7 +355,9 @@
  template <typename T>
  void LL<T>::initialize()
  {
-     std::cout << "Inside method initialize\n";
+    #ifdef DEBUG_INIT
+    std::cout << "Inside method initialize\n";
+    #endif
  
  
     try {
@@ -379,7 +381,9 @@
         throw;
     }
  
+    #ifdef DEBUG_INIT
      std::cout << "Exiting method initialize\n";
+    #endif
  
  } //END private method LL<T>::initialize
  

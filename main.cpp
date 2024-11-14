@@ -69,11 +69,11 @@ int main(int argc, char* argv[]) {
             // Test bubbleSortI
             ProcessTimer bubbleITimer;
             cout << "\nBubble Sort (Iterator Version)";
-            cout << "\n------------------------------\n";
+            cout << "\n------------------------------";
             bubbleITimer.setTimeStart(clock());
             dateList.bubbleSortI();
             bubbleITimer.setTimeEnd(clock());
-            cout << "\nBubbleSortI Time: " << fixed << setprecision(6)
+            cout << "BubbleSortI Time: " << fixed << setprecision(6)
             << bubbleITimer.getTimeElapsed() << " seconds\n";
             
             // Reset list
@@ -82,11 +82,11 @@ int main(int argc, char* argv[]) {
             // Test bubbleSort
             ProcessTimer bubbleTimer;
             cout << "\nBubble Sort";
-            cout << "\n-----------\n";
+            cout << "\n-----------";
             bubbleTimer.setTimeStart(clock());
             dateList.bubbleSort();
             bubbleTimer.setTimeEnd(clock());
-            cout << "\nBubbleSort Time: " << fixed << setprecision(6)
+            cout << "BubbleSort Time: " << fixed << setprecision(6)
             << bubbleTimer.getTimeElapsed() << " seconds\n";
             
             dateList = originalList;
@@ -94,11 +94,11 @@ int main(int argc, char* argv[]) {
             // Test selectionSort
             ProcessTimer selectionTimer;
             cout << "\nSelection Sort";
-            cout << "\n--------------\n";
+            cout << "\n--------------";
             selectionTimer.setTimeStart(clock());
             dateList.selectionSort();
             selectionTimer.setTimeEnd(clock());
-            cout << "\nSelectionSort Time: " << fixed << setprecision(6)
+            cout << "SelectionSort Time: " << fixed << setprecision(6)
             << selectionTimer.getTimeElapsed() << " seconds\n";
             
             dateList = originalList;
@@ -106,11 +106,11 @@ int main(int argc, char* argv[]) {
             // Test insertionSort
             ProcessTimer insertionTimer;
             cout << "\nInsertion Sort";
-            cout << "\n--------------\n";
+            cout << "\n--------------";
             insertionTimer.setTimeStart(clock());
             dateList.insertionSort();
             insertionTimer.setTimeEnd(clock());
-            cout << "\nInsertionSort Time: " << fixed << setprecision(6) <<
+            cout << "InsertionSort Time: " << fixed << setprecision(6) <<
              insertionTimer.getTimeElapsed() << " seconds\n";
 
             // Search tests (on sorted list)
@@ -124,13 +124,13 @@ int main(int argc, char* argv[]) {
             linearTimer.setTimeStart(clock());
             try {
                 unsigned pos = dateList.linearSearch(searchTarget);
-                cout << "\nFound at position: " << pos << endl;
+                cout << "Found at position: " << pos << endl;
             }
             catch (const no_such_object& e) {
                 cout << "\nSearch failed: " << e.what() << endl;
             }
             linearTimer.setTimeEnd(clock());
-            cout << "\nTime: " << fixed << setprecision(6)
+            cout << "Time: " << fixed << setprecision(6)
             << linearTimer.getTimeElapsed() << " seconds\n";
 
             ProcessTimer binaryTimer;
@@ -140,13 +140,13 @@ int main(int argc, char* argv[]) {
             binaryTimer.setTimeStart(clock());
             try {
                 unsigned pos = dateList.binarySearch(searchTarget);
-                cout << "\nFound at position: " << pos << endl;
+                cout << "Found at position: " << pos << endl;
             }
             catch (const no_such_object& e) {
                 cout << "\nSearch failed: " << e.what() << endl;
             }
             binaryTimer.setTimeEnd(clock());
-            cout << "\nTime: " << fixed << setprecision(6)
+            cout << "Time: " << fixed << setprecision(6)
             << binaryTimer.getTimeElapsed() << " seconds\n\n";
             }
 

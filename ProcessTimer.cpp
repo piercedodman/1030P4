@@ -88,7 +88,7 @@ ProcessTimer::ProcessTimer(clock_t tmSt)
  
 ProcessTimer::~ProcessTimer()
 {
-    std::cout << "Inside destructor for ProcessTimer object" << std::endl;
+    //std::cout << "Inside destructor for ProcessTimer object" << std::endl;
 
 } // END destructor for class ProcessTimer
 

@@ -44,6 +44,7 @@
  //#define DEBUG_BUBBLE
  //#define DEBUG_SELECTION
  //#define DEBUG_LINEAR
+ //#define DEBUG_copylist
 
  using std::vector;
  using std::string;
@@ -318,7 +319,9 @@
  void LL<T>::copyList(const LL<T> &otherLL)
  {
      //copy constructor
-     std::cout << "Inside function copyList() for class LL\n";
+    #ifdef DEBUG_copylist
+    std::cout << "Inside function copyList() for class LL\n";
+    #endif
  
     try {
         // Clear existing list
@@ -337,8 +340,9 @@
     }
  
  
- 
-     std::cout << "Exiting function copyList() for class LL\n";
+    #ifdef DEBUG_copylist
+    std::cout << "Exiting function copyList() for class LL\n";
+    #endif
  
  } //END function copyList(const LL &otherLL)
  
@@ -674,9 +678,10 @@ if (ndx > count) {
  {
      unsigned i = 0;
  
+    #ifdef DEBUG_REMOVE
      std::cout << "\tLL<T>::clear() preparing to remove " << count;
      std::cout << " Nodes from the linked list\n";
- 
+    #endif
  
  
     Node<T>* current = header->next;
@@ -691,10 +696,11 @@ if (ndx > count) {
     trailer->previous = header;
     count = 0; 
  
- 
- 
-     std::cout << "\tLL<T>::clear() removed " << i << " Nodes from the list\n";
-     std::cout << "\tLL<T>::clear() new count is: " << count << std::endl;
+    
+    #ifdef DEBUG_REMOVE
+    std::cout << "\tLL<T>::clear() removed " << i << " Nodes from the list\n";
+    std::cout << "\tLL<T>::clear() new count is: " << count << std::endl;
+    #endif
  
  } //END LL<T>::clear()
  
@@ -1003,7 +1009,7 @@ if (ndx > count) {
     #ifdef BINARY_DEBUG
     cout << "Exiting function binarySearch()" << endl;
     #endif
-    
+
      return position;
  
  } // END unsigned LL<T>::binarySearch(T lookFor)
